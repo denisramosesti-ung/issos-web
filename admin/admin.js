@@ -1,55 +1,83 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-  // Detectar sesión
+  // ===== PROTECCIÓN =====
   const { data: { session } } = await supabase.auth.getSession();
 
-  const isLoginPage = location.pathname.endsWith("/admin/") ||
-                      location.pathname.endsWith("/admin/index.html");
-
-  const isDashboard = location.pathname.includes("dashboard.html");
-
-  // PROTECCIÓN DE DASHBOARD
-  if (isDashboard && !session) {
+  if (!session) {
     window.location.href = "./";
     return;
   }
 
-  // SI YA ESTÁ LOGUEADO → DASHBOARD
-  if (isLoginPage && session) {
-    window.location.href = "dashboard.html";
-    return;
+  // ===== LOGOUT =====
+  document.getElementById("logout-btn").addEventListener("click", async () => {
+    await supabase.auth.signOut();
+    window.location.href = "./";
+  });
+
+  const form = document.getElementById("news-form");
+  const list = document.getElementById("news-list");
+  const msg = document.getElementById("news-msg");
+
+  // ===== CARGAR NOTICIAS =====
+  async function cargarNoticias() {
+    const { data, error } = await supabase
+      .from("noticias")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      list.innerHTML = "<p>Error al cargar noticias</p>";
+      return;
+    }
+
+    if (!data.length) {
+      list.innerHTML = "<p>No hay noticias aún.</p>";
+      return;
+    }
+
+    list.innerHTML = data.map(n => `
+      <div class="news-row">
+        <div>
+          <strong>${n.titulo}</strong><br>
+          <small>${new Date(n.created_at).toLocaleString("es-PY")}</small>
+          <p>${n.contenido}</p>
+        </div>
+        <button onclick="eliminarNoticia(${n.id})">Eliminar</button>
+      </div>
+    `).join("");
   }
 
-  // LOGIN
-  const form = document.getElementById("login-form");
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  // ===== CREAR NOTICIA =====
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const errorMsg = document.getElementById("error-msg");
+    const titulo = document.getElementById("news-title").value.trim();
+    const contenido = document.getElementById("news-content").value.trim();
 
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+    msg.textContent = "Publicando...";
 
-      if (error) {
-        errorMsg.textContent = "Credenciales incorrectas";
-      } else {
-        window.location.href = "dashboard.html";
-      }
-    });
-  }
+    const { error } = await supabase
+      .from("noticias")
+      .insert({ titulo, contenido });
 
-  // LOGOUT
-  const logoutBtn = document.getElementById("logout-btn");
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", async () => {
-      await supabase.auth.signOut();
-      window.location.href = "./";
-    });
-  }
+    if (error) {
+      msg.textContent = "Error al publicar";
+      return;
+    }
 
+    form.reset();
+    msg.textContent = "Noticia publicada";
+    cargarNoticias();
+  });
+
+  // ===== ELIMINAR =====
+  window.eliminarNoticia = async (id) => {
+    if (!confirm("¿Eliminar esta noticia?")) return;
+
+    await supabase.from("noticias").delete().eq("id", id);
+    cargarNoticias();
+  };
+
+  // INIT
+  cargarNoticias();
 });

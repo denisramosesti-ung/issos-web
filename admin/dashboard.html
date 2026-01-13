@@ -2,24 +2,46 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin ISSOS - Dashboard</title>
+  <title>Admin ISSOS – Noticias</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="admin.css" />
 </head>
 <body class="admin-body">
 
-  <header class="admin-header">
-    <h2>Dashboard ISSOS</h2>
-    <button id="logout-btn">Cerrar sesión</button>
-  </header>
+<header class="admin-header">
+  <h2>Administración – Noticias</h2>
+  <button id="logout-btn">Cerrar sesión</button>
+</header>
 
-  <main class="admin-content">
-    <p>Bienvenido al panel de administración.</p>
-  </main>
+<main class="admin-content">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../supabase.js"></script>
-  <script src="admin.js"></script>
+  <!-- CREAR NOTICIA -->
+  <section class="admin-card">
+    <h3>Nueva noticia</h3>
+
+    <form id="news-form">
+      <label>Título</label>
+      <input type="text" id="news-title" required />
+
+      <label>Contenido</label>
+      <textarea id="news-content" rows="5" required></textarea>
+
+      <button type="submit">Publicar noticia</button>
+      <p id="news-msg" class="msg"></p>
+    </form>
+  </section>
+
+  <!-- LISTADO -->
+  <section class="admin-card">
+    <h3>Noticias publicadas</h3>
+    <div id="news-list"></div>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase.js"></script>
+<script src="admin.js"></script>
 </body>
 </html>
