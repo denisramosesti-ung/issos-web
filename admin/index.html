@@ -1,123 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Administración – Fundación ISSOS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Admin ISSOS - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css" />
 </head>
 <body class="admin-body">
 
-<header class="admin-header">
-    <div class="container admin-header-inner">
-        <h1>Panel de Administración</h1>
-        <a href="index.html" class="btn btn-text">← Volver al sitio</a>
-    </div>
-</header>
+  <div class="login-container">
+    <h1>Panel de Administración</h1>
 
-<main class="container admin-main">
+    <form id="login-form">
+      <label>Email</label>
+      <input type="email" id="email" required />
 
-    <!-- LOGIN -->
-    <section class="admin-card" id="login-section">
-        <h2>Iniciar sesión</h2>
+      <label>Contraseña</label>
+      <input type="password" id="password" required />
 
-        <form id="login-form" class="admin-form">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="login-email" required>
-            </div>
+      <button type="submit">Entrar</button>
 
-            <div class="form-group">
-                <label>Contraseña</label>
-                <input type="password" id="login-password" required>
-            </div>
+      <p id="error-msg" class="error"></p>
+    </form>
+  </div>
 
-            <button class="btn btn-primary btn-block" type="submit">
-                Entrar
-            </button>
-
-            <p class="form-msg" id="login-msg"></p>
-        </form>
-    </section>
-
-    <!-- ADMIN -->
-    <section class="admin-card" id="admin-section" style="display:none">
-
-        <h2>Noticias</h2>
-
-        <form id="news-form" class="admin-form">
-            <input type="hidden" id="news-id">
-
-            <div class="form-group">
-                <label>Título</label>
-                <input type="text" id="news-title" required>
-            </div>
-
-            <div class="form-group">
-                <label>Resumen</label>
-                <textarea id="news-summary" rows="3" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Fecha</label>
-                <input type="date" id="news-date" required>
-            </div>
-
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" id="news-published">
-                    Publicar noticia
-                </label>
-            </div>
-
-            <button class="btn btn-gold btn-block" type="submit">
-                Guardar noticia
-            </button>
-
-            <p class="form-msg" id="news-msg"></p>
-        </form>
-
-        <div id="news-list" class="admin-list"></div>
-
-        <hr style="margin:40px 0">
-
-        <h2>Programas</h2>
-
-        <form id="program-form" class="admin-form">
-            <input type="hidden" id="program-id">
-
-            <div class="form-group">
-                <label>Título</label>
-                <input type="text" id="program-title" required>
-            </div>
-
-            <div class="form-group">
-                <label>Descripción</label>
-                <textarea id="program-description" rows="3"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" id="program-active" checked>
-                    Programa activo
-                </label>
-            </div>
-
-            <button class="btn btn-gold btn-block" type="submit">
-                Guardar programa
-            </button>
-
-            <p class="form-msg" id="program-msg"></p>
-        </form>
-
-        <div id="program-list" class="admin-list"></div>
-
-    </section>
-
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="admin.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>
