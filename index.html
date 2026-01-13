@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fundación ISSOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="header-container">
+    <span class="brand-title">Fundación ISSOS</span>
+    <nav class="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#institucional">Institucional</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#contacto" class="cta">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="inicio" class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Fundación ISSOS</h1>
+    <p class="hero-sub">Para la Libertad y el Desarrollo</p>
+    <p class="hero-quote">“Tu ne cede malis, sed contra audentior ito”</p>
+  </div>
+</section>
+
+<!-- ================= QUIÉNES SOMOS ================= -->
+<section class="section">
+  <h2 class="center">Transformamos la sociedad a través de la educación</h2>
+  <p class="center max" id="quienes-somos"></p>
+  <p class="center max" id="porque-issos"></p>
+</section>
+
+<!-- ================= MISIÓN / VISIÓN / VALORES ================= -->
+<section class="section soft" id="institucional">
+  <div class="grid-3">
+    <div class="card">
+      <h3>Misión</h3>
+      <p id="mision"></p>
+    </div>
+    <div class="card">
+      <h3>Visión</h3>
+      <p id="vision"></p>
+    </div>
+    <div class="card">
+      <h3>Valores</h3>
+      <pre id="valores"></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IMPACTO ================= -->
+<section class="impact">
+  <div class="impact-inner">
+    <div class="impact-item"><strong>+10</strong><span>Años de trayectoria</span></div>
+    <div class="impact-item"><strong>Educación</strong><span>En todo el país</span></div>
+    <div class="impact-item"><strong>Conferencias</strong><span>Internacionales</span></div>
+    <div class="impact-item"><strong>Programas</strong><span>Educativos</span></div>
+  </div>
+</section>
+
+<!-- ================= NOTICIAS ================= -->
+<section id="noticias" class="section">
+  <h2 class="center">Últimas noticias</h2>
+  <div id="lista-noticias" class="news-grid"></div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section id="contacto" class="section contact-section">
+  <div class="contact-grid">
+
+    <!-- INFO -->
+    <div class="contact-info">
+      <h2>Contacto</h2>
+
+      <div class="contact-item">
+        <span class="icon">📍</span>
+        <p>
+          Acceso Sur 1916 y Sinforiano Bogarín<br>
+          Villa Elisa, Paraguay
+        </p>
+      </div>
+
+      <div class="contact-item">
+        <span class="icon">✉️</span>
+        <p>capacitacionissos@gmail.com</p>
+      </div>
+
+      <div class="contact-item">
+        <span class="icon">📞</span>
+        <p>0982 638 044</p>
+      </div>
+
+      <!-- REDES -->
+      <div class="contact-socials">
+        <a href="https://www.facebook.com/issos.org.py/?locale=es_LA" target="_blank" class="social-icon" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-3h2.4V9.5c0-2.4 1.4-3.8 3.6-3.8 1 0 2 .1 2 .1v2.3h-1.1c-1.1 0-1.4.7-1.4 1.4V12H16l-.4 3h-2.1v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+
+        <a href="https://www.instagram.com/issos_fundacion/" target="_blank" class="social-icon" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.4A2.9 2.9 0 1 1 14.9 12 2.9 2.9 0 0 1 12 14.9zM17.8 6.2a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/></svg>
+        </a>
+
+        <a href="https://x.com/IssosParaguay" target="_blank" class="social-icon" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.2 2H21l-6.5 7.4L22 22h-6.8l-4.7-6-5.2 6H2.9l7-8L2 2h7l4.3 5.6L18.2 2z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- MAPA -->
+    <div class="contact-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d637.38475072757!2d-57.57362938869146!3d-25.35144717547532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945da9416e2c03cf%3A0xed9ce6d607c37e11!2sFundaci%C3%B3n%20Issos%20Para%20La%20Libertad%20Y%20El%20Desarrollo!5e0!3m2!1ses-419!2sus!4v1768335089728!5m2!1ses-419!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      
+      <div class="map-actions">
+        <a href="https://maps.app.goo.gl/qf5BLUakv7bXgUZw8" target="_blank" class="btn-outline">
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  © Fundación ISSOS – Todos los derechos reservados
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
