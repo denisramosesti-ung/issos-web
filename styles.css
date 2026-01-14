@@ -505,6 +505,11 @@ ul {
 .site-header::before,
 .site-header::after {
   pointer-events: none;
+
+}
+
+.main-nav {
+  display: none;
 }
 
 

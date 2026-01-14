@@ -30,9 +30,10 @@
   <span></span>
   <span></span>
 </button>
+    </div>
+</header>
 
-
-        <nav class="main-nav" id="mainNav">
+<nav class="main-nav" id="mainNav">
   <ul>
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
@@ -42,8 +43,6 @@
   </ul>
 </nav>
 
-    </div>
-</header>
 
 <!-- ================= HERO ================= -->
 <section id="inicio" class="hero-section">
@@ -239,24 +238,29 @@ progreso del país.
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
 
-    if (!menuToggle || !mainNav) {
-      console.error("No se encontró menuToggle o mainNav");
-      return;
-    }
+    if (!menuToggle || !mainNav) return;
 
     menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active");
-      mainNav.classList.toggle("active");
+      const abierto = mainNav.style.display === "flex";
+
+      if (abierto) {
+        mainNav.style.display = "none";
+        menuToggle.classList.remove("active");
+      } else {
+        mainNav.style.display = "flex";
+        menuToggle.classList.add("active");
+      }
     });
 
     document.querySelectorAll(".main-nav a").forEach(link => {
       link.addEventListener("click", () => {
+        mainNav.style.display = "none";
         menuToggle.classList.remove("active");
-        mainNav.classList.remove("active");
       });
     });
   });
 </script>
+
 
 
 <script src="script.js"></script>
