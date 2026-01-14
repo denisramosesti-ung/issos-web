@@ -101,22 +101,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // ================= ELIMINAR NOTICIA =================
-  window.eliminarNoticia = async (id) => {
-    if (!confirm("¿Eliminar esta noticia?")) return;
+ async function eliminarNoticia(id) {
+  if (!confirm("¿Eliminar esta noticia?")) return;
 
-    const { error } = await sb
-      .from("noticias")
-      .delete()
-      .eq("id", id);
+  const { error } = await sb
+    .from("noticias")
+    .delete()
+    .eq("id", id);
 
-    if (error) {
-      console.error("Error eliminando:", error);
-      alert("Error al eliminar la noticia");
-      return;
-    }
+  if (error) {
+    alert("Error al eliminar la noticia");
+    console.error(error);
+    return;
+  }
 
-    cargarNoticias();
-  };
+  cargarNoticias();
+}
 
   // ================= INIT =================
   cargarNoticias();
