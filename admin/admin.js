@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const { data: { session } } = await sb.auth.getSession();
 
   if (!session) {
-    window.location.href = "./";
+    window.location.href = "./index.html";
     return;
   }
 
   // ===== LOGOUT =====
   document.getElementById("logout-btn").addEventListener("click", async () => {
     await sb.auth.signOut();
-    window.location.href = "./";
+    window.location.href = "./index.html";
   });
 
   const form = document.getElementById("news-form");
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ===== CARGAR NOTICIAS =====
   async function cargarNoticias() {
-    const { data, error } = await supabase
+    const { data, error } = await sb
       .from("noticias")
       .select("*")
       .order("created_at", { ascending: false });
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    if (!data.length) {
+    if (!data || !data.length) {
       list.innerHTML = "<p>No hay noticias aún.</p>";
       return;
     }
@@ -42,9 +42,14 @@ document.addEventListener("DOMContentLoaded", async () => {
           <small>${new Date(n.created_at).toLocaleString("es-PY")}</small>
           <p>${n.contenido}</p>
         </div>
-        <button onclick="eliminarNoticia(${n.id})">Eliminar</button>
+        <button data-id="${n.id}">Eliminar</button>
       </div>
     `).join("");
+
+    // botones eliminar
+    list.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => eliminarNoticia(btn.dataset.id));
+    });
   }
 
   // ===== CREAR NOTICIA =====
@@ -54,9 +59,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const titulo = document.getElementById("news-title").value.trim();
     const contenido = document.getElementById("news-content").value.trim();
 
+    if (!titulo || !contenido) {
+      msg.textContent = "Completa todos los campos";
+      return;
+    }
+
     msg.textContent = "Publicando...";
 
-    const { error } = await supabase
+    const { error } = await sb
       .from("noticias")
       .insert({ titulo, contenido });
 
@@ -71,12 +81,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // ===== ELIMINAR =====
-  window.eliminarNoticia = async (id) => {
+  async function eliminarNoticia(id) {
     if (!confirm("¿Eliminar esta noticia?")) return;
 
-    await supabase.from("noticias").delete().eq("id", id);
+    await sb.from("noticias").delete().eq("id", id);
     cargarNoticias();
-  };
+  }
 
   // INIT
   cargarNoticias();
