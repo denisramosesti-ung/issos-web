@@ -49,8 +49,10 @@ async function cargarNoticias() {
 
   const { data, error } = await sb
     .from("noticias")
-    .select("titulo,contenido,created_at")
-    .order("created_at", { ascending: false });
+.select("titulo,contenido,created_at")
+.eq("publicado", true)
+.order("created_at", { ascending: false });
+
 
   if (error || !data?.length) {
     grid.innerHTML = "<p>No hay noticias publicadas.</p>";
