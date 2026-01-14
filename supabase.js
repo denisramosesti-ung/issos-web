@@ -3,14 +3,11 @@ const SUPABASE_URL = "https://hbjiaacngivpjdsxppwv.supabase.co";
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhiamlhYWNuZ2l2cGpkc3hwcHd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTcyOTcsImV4cCI6MjA4Mzg5MzI5N30.bRwi5itih7foAfyniyRnfqcNU0WI6t3c5JUeP_Zzmxc";
 
-// cliente principal (ADMIN)
-const supabase = window.supabase.createClient(
+// 👉 cliente único (NO usar nombre "supabase")
+const sb = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
-
-// alias para web pública (PROGRAMAS / NOTICIAS)
-const sb = supabase;
 
 // helper
 const qs = (s) => document.querySelector(s);
@@ -26,18 +23,17 @@ async function cargarProgramas() {
     .eq("activo", true)
     .order("orden");
 
-  if (error || !data || !data.length) {
+  if (error || !data?.length) {
     grid.innerHTML = "<p>Programas en preparación.</p>";
     return;
   }
 
   grid.innerHTML = data.map(p => `
     <article class="program-card">
-        <div class="program-image"></div>
-        <div class="program-content">
-            <h3>${p.titulo}</h3>
-            <p>${p.descripcion}</p>
-        </div>
+      <div class="program-content">
+        <h3>${p.titulo}</h3>
+        <p>${p.descripcion}</p>
+      </div>
     </article>
   `).join("");
 }
@@ -52,23 +48,19 @@ async function cargarNoticias() {
     .select("titulo,contenido,created_at")
     .order("created_at", { ascending: false });
 
-  if (error || !data || !data.length) {
+  if (error || !data?.length) {
     grid.innerHTML = "<p>No hay noticias publicadas.</p>";
     return;
   }
 
   grid.innerHTML = data.map(n => `
     <article class="news-card">
-        <div class="news-date">
-          ${new Date(n.created_at).toLocaleDateString("es-PY")}
-        </div>
-        <h3>${n.titulo}</h3>
-        <p>${n.contenido}</p>
+      <h3>${n.titulo}</h3>
+      <p>${n.contenido}</p>
     </article>
   `).join("");
 }
 
-// ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
   cargarProgramas();
   cargarNoticias();

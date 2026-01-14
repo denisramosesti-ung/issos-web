@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
   // ===== PROTECCIÓN =====
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await sb.auth.getSession();
 
   if (!session) {
     window.location.href = "./";
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ===== LOGOUT =====
   document.getElementById("logout-btn").addEventListener("click", async () => {
-    await supabase.auth.signOut();
+    await sb.auth.signOut();
     window.location.href = "./";
   });
 
