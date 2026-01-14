@@ -3,7 +3,16 @@ const SUPABASE_URL = "https://hbjiaacngivpjdsxppwv.supabase.co";
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhiamlhYWNuZ2l2cGpkc3hwcHd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTcyOTcsImV4cCI6MjA4Mzg5MzI5N30.bRwi5itih7foAfyniyRnfqcNU0WI6t3c5JUeP_Zzmxc";
 
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// cliente principal (ADMIN)
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+// alias para web pública (PROGRAMAS / NOTICIAS)
+const sb = supabase;
+
+// helper
 const qs = (s) => document.querySelector(s);
 
 // ================= PROGRAMAS =================
@@ -17,7 +26,7 @@ async function cargarProgramas() {
     .eq("activo", true)
     .order("orden");
 
-  if (error || !data.length) {
+  if (error || !data || !data.length) {
     grid.innerHTML = "<p>Programas en preparación.</p>";
     return;
   }
@@ -40,20 +49,21 @@ async function cargarNoticias() {
 
   const { data, error } = await sb
     .from("noticias")
-    .select("titulo,resumen,fecha")
-    .eq("publicado", true)
-    .order("fecha", { ascending: false });
+    .select("titulo,contenido,created_at")
+    .order("created_at", { ascending: false });
 
-  if (error || !data.length) {
+  if (error || !data || !data.length) {
     grid.innerHTML = "<p>No hay noticias publicadas.</p>";
     return;
   }
 
   grid.innerHTML = data.map(n => `
     <article class="news-card">
-        <div class="news-date">${new Date(n.fecha).toLocaleDateString("es-PY")}</div>
+        <div class="news-date">
+          ${new Date(n.created_at).toLocaleDateString("es-PY")}
+        </div>
         <h3>${n.titulo}</h3>
-        <p>${n.resumen}</p>
+        <p>${n.contenido}</p>
     </article>
   `).join("");
 }
