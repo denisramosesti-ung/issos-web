@@ -1,4 +1,6 @@
 // ================= SUPABASE =================
+console.log("supabase.js cargado correctamente");
+
 const SUPABASE_URL = "https://hbjiaacngivpjdsxppwv.supabase.co";
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhiamlhYWNuZ2l2cGpkc3hwcHd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzMTcyOTcsImV4cCI6MjA4Mzg5MzI5N30.bRwi5itih7foAfyniyRnfqcNU0WI6t3c5JUeP_Zzmxc";
@@ -14,6 +16,7 @@ const qs = (s) => document.querySelector(s);
 
 // ================= PROGRAMAS =================
 async function cargarProgramas() {
+    console.log("cargarProgramas()");
   const grid = qs("#programas-grid");
   if (!grid) return;
 
@@ -40,6 +43,7 @@ async function cargarProgramas() {
 
 // ================= NOTICIAS =================
 async function cargarNoticias() {
+    console.log("cargarNoticias()");
   const grid = qs("#noticias-grid");
   if (!grid) return;
 

@@ -1,9 +1,7 @@
-document.addEventListener("DOMContentLoaded", async () => {
-
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");
   const errorMsg = document.getElementById("error-msg");
 
-  // ===== LOGIN =====
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -12,9 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    const { data, error } = await sb.auth.signInWithPassword({
+    const { error } = await sb.auth.signInWithPassword({
       email,
-      password
+      password,
     });
 
     if (error) {
@@ -22,9 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // Login OK → dashboard
+    // LOGIN OK
     window.location.href = "./dashboard.html";
   });
-
 });
-
