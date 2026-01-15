@@ -769,6 +769,85 @@ ul {
 .news-content {
   line-height: 1.75;
 }
+/* ===============================
+   MODAL NOTICIA – MOBILE FIX
+   =============================== */
+
+#news-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* Contenedor del modal */
+#news-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Imagen */
+#modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* Fecha */
+#modal-date {
+  display: block;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+/* Título */
+#modal-title {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+/* Contenido */
+#modal-content {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Botón cerrar */
+#closeNews {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===============================
+   AJUSTES SOLO PARA CELULAR
+   =============================== */
+@media (max-width: 768px) {
+  #news-modal {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  #modal-title {
+    font-size: 1.4rem;
+  }
+}
 
 
 /* ============ ADMIN (simple) ============ */
