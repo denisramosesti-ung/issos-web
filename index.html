@@ -26,7 +26,7 @@
                 <img src="img/logo-issos.png" alt="Fundación ISSOS">
             </a>
         </div>
-        
+
 <nav class="main-nav" id="mainNav">
   <ul>
     <li><a href="#inicio">Inicio</a></li>
@@ -277,6 +277,23 @@ progreso del país.
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
+
+<!-- ================= MODAL NOTICIA ================= -->
+<div id="news-overlay" class="news-overlay">
+  <div class="news-modal">
+    
+    <button id="closeNews" class="news-close">✕</button>
+
+    <img id="modal-image" class="news-image" />
+
+    <div class="news-body">
+      <span id="modal-date" class="news-date"></span>
+      <h2 id="modal-title"></h2>
+      <div id="modal-content" class="news-content"></div>
+    </div>
+
+  </div>
+</div>
 
 </body>
 </html>

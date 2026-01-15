@@ -114,7 +114,6 @@ async function cargarNoticiasTodas() {
   `).join("");
 }
 
-
 // ================= MODAL NOTICIA COMPLETA =================
 window.abrirNoticia = function(noticia) {
   qs("#modal-title").innerText = noticia.titulo;
@@ -135,12 +134,26 @@ window.abrirNoticia = function(noticia) {
     img.style.display = "none";
   }
 
+  // 🔒 bloquear scroll del fondo
+  document.body.style.overflow = "hidden";
+
   qs("#news-overlay").classList.add("active");
 };
 
-qs("#closeNews")?.addEventListener("click", () => {
-  qs("#news-overlay").classList.remove("active");
+// Cerrar con botón
+qs("#closeNews")?.addEventListener("click", cerrarModal);
+
+// Cerrar tocando fondo
+qs("#news-overlay")?.addEventListener("click", (e) => {
+  if (e.target.id === "news-overlay") {
+    cerrarModal();
+  }
 });
+
+function cerrarModal() {
+  qs("#news-overlay").classList.remove("active");
+  document.body.style.overflow = "";
+}
 
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {

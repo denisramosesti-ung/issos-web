@@ -702,6 +702,74 @@ ul {
   }
 }
 
+/* ================= NOTICIA MODAL ================= */
+
+.news-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 99999;
+}
+
+.news-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.news-modal {
+  background: #fff;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  border-radius: 14px;
+  overflow: hidden;
+  transform: scale(0.96);
+  transition: transform 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-overlay.active .news-modal {
+  transform: scale(1);
+}
+
+.news-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.news-image {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+}
+
+.news-body {
+  padding: 36px;
+  overflow-y: auto;
+}
+
+.news-body h2 {
+  margin-top: 12px;
+  margin-bottom: 18px;
+}
+
+.news-content {
+  line-height: 1.75;
+}
+
 
 /* ============ ADMIN (simple) ============ */
 .admin-body { padding-top: 0; background: #f6f6f6; }
