@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundación ISSOS - Libertad y Desarrollo</title>
@@ -24,15 +26,7 @@
                 <img src="img/logo-issos.png" alt="Fundación ISSOS">
             </a>
         </div>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-    </div>
-</header>
-
+        
 <nav class="main-nav" id="mainNav">
   <ul>
     <li><a href="#inicio">Inicio</a></li>
@@ -42,6 +36,15 @@
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+    </div>
+</header>
+
+
 
 
 <!-- ================= HERO ================= -->
@@ -187,11 +190,19 @@ progreso del país.
 <section id="noticias" class="section news-section">
     <div class="container">
         <h2 class="section-title text-center">Actualidad Institucional</h2>
+
         <div class="grid-3" id="noticias-grid">
-            <!-- Cargado desde Supabase -->
+            <!-- Noticias (máx 6) desde Supabase -->
+        </div>
+
+        <div style="text-align:center; margin-top:40px;">
+            <a href="noticias.html" class="btn btn-primary">
+                Ver todas las noticias
+            </a>
         </div>
     </div>
 </section>
+
 
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer" id="contacto">

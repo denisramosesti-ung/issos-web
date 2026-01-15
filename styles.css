@@ -4,6 +4,37 @@
    ========================================================= */
 
 /* ================= VARIABLES ================= */
+
+.site-header {
+  background: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.main-nav {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.main-nav ul {
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0 40px;
+  list-style: none;
+}
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
 :root {
   /* Colores institucionales */
   --black: #0A0A0A;
@@ -23,6 +54,7 @@
   --serif: 'Playfair Display', serif;
   --sans: 'Lato', sans-serif;
 }
+
 
 /* ================= RESET ================= */
 * {
@@ -510,6 +542,164 @@ ul {
 
 .main-nav {
   display: none;
+}
+
+/* =========================
+   FIX MENÚ DESKTOP vs MOBILE
+   ========================= */
+
+/* Desktop: menú normal */
+@media (min-width: 769px) {
+  .main-nav {
+    position: static;
+    display: block !important;
+    height: auto;
+    background: transparent;
+  }
+
+  .main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .main-nav a {
+    color: #000; /* o el color que ya usabas */
+    font-size: 16px;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* ===============================
+   HEADER + NAV DESKTOP (FIX REAL)
+   =============================== */
+
+@media (min-width: 769px) {
+
+  .site-header {
+    background: #000;
+    position: fixed;
+    z-index: 10;
+  }
+  
+  @media (min-width: 769px) {
+  .main-nav {
+    height: 100%;
+  }
+}
+
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* NAV DENTRO DEL HEADER */
+  .main-nav {
+    position: static;
+    background: transparent;
+    display: block !important;
+  }
+
+  .main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .main-nav a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+
+  .main-nav a:hover {
+    opacity: 0.8;
+  }
+
+  /* Ocultar hamburguesa en desktop */
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* ===============================
+   MODAL NOTICIA (LECTURA COMPLETA)
+   =============================== */
+
+.news-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.news-overlay.active {
+  display: flex;
+}
+
+.news-modal {
+  background: #fff;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 30px;
+  position: relative;
+  animation: zoomIn 0.3s ease;
+}
+
+.news-modal img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.news-date {
+  display: block;
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.news-content {
+  line-height: 1.8;
+}
+
+.news-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 

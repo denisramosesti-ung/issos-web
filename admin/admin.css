@@ -2,6 +2,8 @@ body.admin-body {
   font-family: Arial, sans-serif;
   background: #f2f2f2;
   min-height: 100vh;
+}
+body.login-page {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,12 +65,16 @@ body.admin-body {
 .admin-content {
   margin-top: 100px;
   padding: 30px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .admin-card {
   background: #fff;
-  padding: 20px;
-  margin-bottom: 25px;
-  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
 .admin-card h3 {
@@ -98,4 +104,27 @@ body.admin-body {
 .news-row button {
   margin-top: 10px;
   background: #a00;
+}
+/* ===============================
+   FIX DEFINITIVO EDITOR QUILL
+   =============================== */
+
+/* contenedor del editor */
+#editor {
+  border: 1px solid #ccc;
+  margin-top: 8px;
+}
+
+/* contenedor interno de quill */
+#editor .ql-container {
+  height: 260px;          /* altura fija */
+  max-height: 260px;
+  overflow: hidden;
+}
+
+/* área editable */
+#editor .ql-editor {
+  height: 100%;
+  overflow-y: auto;       /* scroll interno */
+  box-sizing: border-box;
 }

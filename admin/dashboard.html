@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="admin.css" />
+
+  <!-- Editor visual -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body class="admin-body">
 
@@ -21,28 +24,42 @@
     <h3>Nueva noticia</h3>
 
     <form id="news-form">
+
       <label>Título</label>
       <input type="text" id="news-title" required />
 
-      <label>Contenido</label>
-      <textarea id="news-content" rows="5" required></textarea>
+      <label>Imagen destacada</label>
+      <input type="file" id="news-image" accept="image/*" />
 
-      <button type="submit">Publicar noticia</button>
+
+      <label>Fecha</label>
+      <input type="date" id="news-date" required />
+
+      <label>Contenido</label>
+      <!-- Editor visual -->
+      <div id="editor" style="height:200px;"></div>
+
+      <button type="submit">Guardar noticia</button>
       <p id="news-msg" class="msg"></p>
     </form>
   </section>
 
   <!-- LISTADO -->
   <section class="admin-card">
-    <h3>Noticias publicadas</h3>
+    <h3>Noticias</h3>
     <div id="news-list"></div>
   </section>
 
 </main>
 
-<!-- ORDEN CORRECTO DE SCRIPTS -->
+<!-- LIBRERÍAS -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../supabase.js"></script>
+
+<!-- Editor -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<!-- Lógica -->
 <script src="dashboard.js"></script>
 
 </body>
